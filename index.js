@@ -7,7 +7,6 @@ function callApi() {
   axios
     .get("https://academichub-restapi.onrender.com/")
     .then((result) => {
-      console.log(result.data);
     })
     .catch((error) => error);
 }
