@@ -1,26 +1,24 @@
-const axios = require('axios');
+const axios = require("axios");
 const express = require("express");
+const cron = require('node-cron');
 const app = express();
 
-const http = axios.create({
-  baseURL: "https://academichub-restapi.onrender.com/",
-});
-
-function sample(){
-    console.log(1);
-    
+function callApi() {
+  axios
+    .get("https://academichub-restapi.onrender.com/")
+    .then((result) => {
+      console.log(result.data);
+    })
+    .catch((error) => error);
 }
 
+cron.schedule('*/13 * * * *',()=>{
+    callApi();
 
-app.get("/", (req,res) => {
+})
 
-    setInterval(()=>{
-        axios.get("https://academichub-restapi.onrender.com/").then((result)=>{
-            console.log(result.data);
-            res.send(result.data);
-        }).catch(error => error)
-    },800000);
-    
+app.get("/", (req, res) => {
+  res.send("Hello");
 });
 
 app.listen(8000, () => {});
