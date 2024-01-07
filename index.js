@@ -11,7 +11,7 @@ function callApi() {
     .catch((error) => error);
 }
 
-cron.schedule('*/13 * * * *',()=>{
+cron.schedule('*/5 * * * *',()=>{
     callApi();
 
 })
