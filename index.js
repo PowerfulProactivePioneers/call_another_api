@@ -1,20 +1,20 @@
 const axios = require("axios");
 const express = require("express");
-const cron = require('node-cron');
 const app = express();
 
 function callApi() {
   axios
     .get("https://academichub-restapi.onrender.com/")
     .then((result) => {
+      console.log(result);
     })
-    .catch((error) => error);
+    .catch((error) => {console.log(error);});
+
 }
 
-cron.schedule('*/5 * * * *',()=>{
-    callApi();
-
-})
+setInterval(async()=>{
+  callApi();
+},2000)
 
 app.get("/", (req, res) => {
   res.send("Hello");
