@@ -14,7 +14,7 @@ function callApi() {
 
 setInterval(async()=>{
   callApi();
-},2000)
+},10000)
 
 app.get("/", (req, res) => {
   res.send("Hello");
